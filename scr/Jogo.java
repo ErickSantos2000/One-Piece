@@ -1,16 +1,19 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Jogo {
+public class Jogo implements Serializable {
     private ElementoTabuleiro[][] tabuleiro;
     private Set<String> elementosVisitados;
     private Jogador jogador;
+    private transient Scanner sc;
 
     public Jogo() {
-        tabuleiro = new ElementoTabuleiro[6][6];
-        tabuleiro[0][0] = new Vazio();
+        tabuleiro = new ElementoTabuleiro[10][10];
+        tabuleiro[0][0] = new Mar();
         elementosVisitados = new HashSet<>();
         elementosVisitados.add("0,0");
         jogador = new Jogador();
+        sc = new Scanner(System.in);
     }
 
     private void inicializarTabuleiro() {
@@ -18,41 +21,55 @@ public class Jogo {
 
         // preenche o restante com tesouro
         int tesourosColocados = 0;
-        while (tesourosColocados < 3) {
-            int i = rand.nextInt(6);
-            int j = rand.nextInt(6);
+        while (tesourosColocados < 5) {
+            int i = rand.nextInt(10);
+            int j = rand.nextInt(10);
             if (tabuleiro[i][j] == null) {
-                tabuleiro[i][j] = new Tesouro();
+                tabuleiro[i][j] = new Poneglyph();
                 tesourosColocados++;
             }
         }
 
         // preenche o restante com armadilhas
         int armadilhasColocadas = 0;
-        while (armadilhasColocadas < 3) {
-            int linha = rand.nextInt(6);
-            int coluna = rand.nextInt(6);
+        while (armadilhasColocadas < 5) {
+            int linha = rand.nextInt(10);
+            int coluna = rand.nextInt(10);
             if (tabuleiro[linha][coluna] == null) {
-                tabuleiro[linha][coluna] = new Armadilha();
+                tabuleiro[linha][coluna] = new Marinha();
                 armadilhasColocadas++;
             }
         }
 
         // preenche o restante com vazio
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 if (tabuleiro[i][j] == null) {
-                    tabuleiro[i][j] = new Vazio();
+                    tabuleiro[i][j] = new Mar();
                 }
             }
         }
     }
 
     public void jogar() {
-        inicializarTabuleiro();
-        Scanner sc = new Scanner(System.in);
+        Jogo jogoSalvo = (Jogo) SavePoint.carregar();
 
-        while (jogador.getMovimentos() < 10 && jogador.getTesouro() < 3) {
+        if(jogoSalvo == null){
+            inicializarTabuleiro();
+        }
+        else {
+            this.jogador = jogoSalvo.jogador;
+            this.tabuleiro = jogoSalvo.tabuleiro;
+            this.elementosVisitados = jogoSalvo.elementosVisitados;
+            this.sc = new Scanner(System.in);
+        }
+
+    
+        System.out.println("=========ONE PIECE=========");
+        System.out.println("Bem vindo a Grand Line!");
+        System.out.println("Encontre 5 Poneglyphs (📖) para conquistar o One Piece.");
+        System.out.println("=========ONE PIECE=========");
+        while (jogador.getMovimentos() < 20 && jogador.getTesouro() < 5) {
 
             mostrarTabuleiro();
 
@@ -78,7 +95,7 @@ public class Jogo {
                     continue;
             }
 
-            if (linhaTeste < 0 || linhaTeste >= 6 || colunaTeste < 0 || colunaTeste >= 6) {
+            if (linhaTeste < 0 || linhaTeste >= 10 || colunaTeste < 0 || colunaTeste >= 10) {
                 System.out.println("Jogada invalida.");
                 continue;
             }
@@ -104,6 +121,8 @@ public class Jogo {
             tabuleiro[linha][coluna].interagir(jogador); // POLIMORFISMO
             
             System.out.println("vc encontrou: " + tabuleiro[linha][coluna].simbolo()); // POLIMORFISMO
+            // salvar jogo
+            SavePoint.salvar(this);
         }
 
         System.out.println("=========FINAL=========");
@@ -111,11 +130,13 @@ public class Jogo {
         System.out.println("Tesouros encontrados: " + jogador.getTesouro());
         mostrarTabuleiroFinal();
         System.out.println("=======================");
+        // deletar jogo
+        SavePoint.deletar();
     }
 
     // imprimir
     private void mostrarTabuleiro() {
-        System.out.println("\nTabela:");
+        System.out.println("Tabela:");
         for (int i = 0; i < tabuleiro.length; i++) {
             for (int j = 0; j < tabuleiro[i].length; j++) {
 
@@ -128,7 +149,7 @@ public class Jogo {
                 } 
                 
                 else {
-                    System.out.print("🟥");
+                    System.out.print("\uD83C\uDF0A");
                 }
                 }
                 System.out.println();

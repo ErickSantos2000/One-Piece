@@ -1,6 +1,6 @@
+import java.io.Serializable;
 
-
-public class Jogador {
+public class Jogador implements Serializable {
     private int linha, coluna;
     private int pontos;
     private int movimentos;
@@ -19,9 +19,9 @@ public class Jogador {
     public void mover(char direcao) {
         switch (Character.toUpperCase(direcao)) {
             case 'W': if (linha > 0) linha--; break;
-            case 'S': if (linha < 5) linha++; break;
+            case 'S': if (linha < 9) linha++; break;
             case 'A': if (coluna > 0) coluna--; break;
-            case 'D': if (coluna < 5) coluna++; break;
+            case 'D': if (coluna < 9) coluna++; break;
         }
         movimentos++;
     }
