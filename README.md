@@ -1,8 +1,10 @@
 # One Piece - Caça ao Tesouro na Grand Line
-## Demonstração
-![Demonstração do Jogo](imagem/Captura%20de%20tela%20de%202025-09-24%2018-06-01.png)
 
 Bem-vindo, pirata! Este é um jogo de aventura em texto onde seu objetivo é navegar pela perigosa Grand Line em busca do tesouro supremo, o One Piece. Para isso, você deve encontrar 5 Poneglyphs antigos (📖) espalhados pelo mar.
+
+## Demonstração
+
+![Demonstração do Jogo](imagem/Captura%20de%20tela%20de%202025-09-24%2018-06-01.png)
 
 ## Objetivo
 
