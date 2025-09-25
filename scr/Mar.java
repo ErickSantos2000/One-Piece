@@ -1,7 +1,6 @@
 public class Mar extends ElementoTabuleiro {
-    public void interagir(Jogador jogador) {
-        jogador.atualizarPontos(0);
-        jogador.setArmadilha(jogador.getArmadilha()+1);
+    public void interagir(Pirata pirata) {
+        pirata.setMarinha(pirata.getMarinha()+1);
     }
     public String simbolo() { return "\uD83C\uDF0A"; }
 
