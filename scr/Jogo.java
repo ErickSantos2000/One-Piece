@@ -1,18 +1,18 @@
 import java.io.Serializable;
 import java.util.*;
 
-public class Jogo implements Serializable {
+public class GranLine implements Serializable {
     private ElementoTabuleiro[][] tabuleiro;
     private Set<String> elementosVisitados;
-    private Jogador jogador;
+    private Pirata pirata;
     private transient Scanner sc;
 
-    public Jogo() {
+    public GranLine() {
         tabuleiro = new ElementoTabuleiro[10][10];
         tabuleiro[0][0] = new Mar();
         elementosVisitados = new HashSet<>();
         elementosVisitados.add("0,0");
-        jogador = new Jogador();
+        pirata = new Pirata();
         sc = new Scanner(System.in);
     }
 
@@ -52,15 +52,15 @@ public class Jogo implements Serializable {
     }
 
     public void jogar() {
-        Jogo jogoSalvo = (Jogo) SavePoint.carregar();
+        GranLine granLineSalvo = (GranLine) SavePoint.carregar();
 
-        if(jogoSalvo == null){
+        if(granLineSalvo == null){
             inicializarTabuleiro();
         }
         else {
-            this.jogador = jogoSalvo.jogador;
-            this.tabuleiro = jogoSalvo.tabuleiro;
-            this.elementosVisitados = jogoSalvo.elementosVisitados;
+            this.pirata = granLineSalvo.pirata;
+            this.tabuleiro = granLineSalvo.tabuleiro;
+            this.elementosVisitados = granLineSalvo.elementosVisitados;
             this.sc = new Scanner(System.in);
         }
 
@@ -69,21 +69,20 @@ public class Jogo implements Serializable {
         System.out.println("Bem vindo a Grand Line!");
         System.out.println("Encontre 5 Poneglyphs (📖) para conquistar o One Piece.");
         System.out.println("=========ONE PIECE=========");
-        while (jogador.getMovimentos() < 20 && jogador.getTesouro() < 5) {
+        while (pirata.getMovimentos() < 20 && pirata.getPoneglyph() < 5) {
 
             mostrarTabuleiro();
 
-            System.out.println("======================");
-            System.out.println("Numero de movimentos: " + jogador.getMovimentos());
-            System.out.println("Ponto:" + jogador.getPontos());
-            System.out.println("Tesouros encontrados: " + jogador.getTesouro());
-            System.out.println("======================");
+            System.out.println("=========ONE PIECE=========");
+            System.out.println("Numero de movimentos: " + pirata.getMovimentos());
+            System.out.println("Poneglyphs encontrados encontrados: " + pirata.getPoneglyph());
+            System.out.println("=========ONE PIECE=========");
 
             System.out.print("Movimento \nW - cima\nS - baixo\nA - esquerda\nD - direita\n");
             char movimento = sc.next().charAt(0);
 
-            int linhaTeste = jogador.getLinha();
-            int colunaTeste = jogador.getColuna();
+            int linhaTeste = pirata.getLinha();
+            int colunaTeste = pirata.getColuna();
 
             switch(Character.toUpperCase(movimento)){
                 case 'A': colunaTeste--; break;
@@ -110,15 +109,15 @@ public class Jogo implements Serializable {
             }
 
             // incia o movimento
-            jogador.mover(movimento);
+            pirata.mover(movimento);
 
-            int linha = jogador.getLinha();
-            int coluna = jogador.getColuna();
+            int linha = pirata.getLinha();
+            int coluna = pirata.getColuna();
 
             // marca como visitado
             elementosVisitados.add(linha + "," + coluna);
 
-            tabuleiro[linha][coluna].interagir(jogador); // POLIMORFISMO
+            tabuleiro[linha][coluna].interagir(pirata); // POLIMORFISMO
             
             System.out.println("vc encontrou: " + tabuleiro[linha][coluna].simbolo()); // POLIMORFISMO
             // salvar jogo
@@ -126,8 +125,7 @@ public class Jogo implements Serializable {
         }
 
         System.out.println("=========FINAL=========");
-        System.out.println("Pontuação final: " + jogador.getPontos());
-        System.out.println("Tesouros encontrados: " + jogador.getTesouro());
+        System.out.println("Poneglyphs encontrados: " + pirata.getPoneglyph());
         mostrarTabuleiroFinal();
         System.out.println("=======================");
         // deletar jogo
@@ -141,7 +139,7 @@ public class Jogo implements Serializable {
             for (int j = 0; j < tabuleiro[i].length; j++) {
 
                 // aqui é controla onde o jogador esta
-                if (i == jogador.getLinha() && j == jogador.getColuna()) { 
+                if (i == pirata.getLinha() && j == pirata.getColuna()) {
                         System.out.print(tabuleiro[i][j].simboloComJogador()); // POLIMORFISMO
                     }
                 else if (elementosVisitados.contains(i + "," + j)) {
@@ -177,8 +175,8 @@ public class Jogo implements Serializable {
         return elementosVisitados;
     }
 
-    public Jogador getJogador() {
-        return jogador;
+    public Pirata getJogador() {
+        return pirata;
     }
 
     // sets
@@ -186,8 +184,8 @@ public class Jogo implements Serializable {
         this.elementosVisitados = filtro;
     }
 
-    public void setJogador(Jogador jogador) {
-        this.jogador = jogador;
+    public void setJogador(Pirata pirata) {
+        this.pirata = pirata;
     }
 
     public void setTabuleiro(ElementoTabuleiro[][] tabuleiro) {
