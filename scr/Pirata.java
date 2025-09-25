@@ -40,8 +40,8 @@ public class Pirata implements Serializable {
     }
 
     // sets
-    public void setPoneglyph(int tesouro) {
-        this.poneglyph = tesouro;
+    public void setPoneglyph(int poneglyph) {
+        this.poneglyph = poneglyph;
     }
 
     public void setMarinha(int armadilha) {

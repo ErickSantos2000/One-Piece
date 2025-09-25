@@ -19,29 +19,29 @@ public class GranLine implements Serializable {
     private void inicializarTabuleiro() {
         Random rand = new Random();
 
-        // preenche o restante com tesouro
-        int tesourosColocados = 0;
-        while (tesourosColocados < 5) {
+        // preenche o restante com Poneglyph
+        int poneglyphsColocados = 0;
+        while (poneglyphsColocados < 5) {
             int i = rand.nextInt(10);
             int j = rand.nextInt(10);
             if (tabuleiro[i][j] == null) {
                 tabuleiro[i][j] = new Poneglyph();
-                tesourosColocados++;
+                poneglyphsColocados++;
             }
         }
 
-        // preenche o restante com armadilhas
-        int armadilhasColocadas = 0;
-        while (armadilhasColocadas < 5) {
+        // preenche o restante com marinha
+        int marinhasColocadas = 0;
+        while (marinhasColocadas < 5) {
             int linha = rand.nextInt(10);
             int coluna = rand.nextInt(10);
             if (tabuleiro[linha][coluna] == null) {
                 tabuleiro[linha][coluna] = new Marinha();
-                armadilhasColocadas++;
+                marinhasColocadas++;
             }
         }
 
-        // preenche o restante com vazio
+        // preenche o restante com mar
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (tabuleiro[i][j] == null) {

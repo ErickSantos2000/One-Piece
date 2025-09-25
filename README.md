@@ -4,7 +4,7 @@ Bem-vindo, pirata! Este é um jogo de aventura em texto onde seu objetivo é nav
 
 ## Demonstração
 
-![Demonstração do Jogo](imagem/Captura%20de%20tela%20de%202025-09-24%2018-06-01.png)
+![Demonstração do Jogo](imagem/j.png)
 
 ## Objetivo
 
@@ -20,12 +20,14 @@ Use as seguintes teclas para se mover:
 - **A**: Mover para a Esquerda
 - **D**: Mover para a Direita
 
+**Atenção:** Tentar mover-se para uma área já visitada resultará em uma jogada perdida, consumindo um movimento.
+
 ## Elementos do Jogo
 
 - **⛵ (Seu Navio):** Representa sua posição atual no mapa.
-- **🌊 (Mar Aberto):** Uma área inexplorada do mapa. Também pode ser uma área já visitada que não continha nada.
-- **📖 (Poneglyph):** O tesouro! Encontrar um destes aumenta sua pontuação e te aproxima da vitória.
-- **⚓ (Marinha):** Cuidado! Encontrar a Marinha resulta em uma penalidade e deduz pontos.
+- **🌊 (Mar Aberto):** Uma área inexplorada do mapa ou uma área já visitada que não continha um Poneglyph. Interagir com o mar tem o mesmo efeito que encontrar a Marinha.
+- **📖 (Poneglyph):** O objetivo! Encontrar um destes te aproxima da vitória.
+- **⚓ (Marinha):** Cuidado! Encontrar a Marinha registra o encontro, assim como interagir com o Mar, mas não há penalidade direta que afete o resultado do jogo.
 - **💥 (Combate):** Símbolo que aparece quando você interage com a Marinha.
 - **🕋 (Leitura):** Símbolo que aparece quando você encontra e lê um Poneglyph.
 
@@ -35,14 +37,10 @@ O jogo termina em uma das seguintes condições:
 1.  **Vitória:** Você encontra os 5 Poneglyphs.
 2.  **Derrota:** Você atinge o limite de 20 movimentos sem encontrar todos os Poneglyphs.
 
-Ao final da partida, sua pontuação final e o número de tesouros encontrados serão exibidos.
+Ao final da partida, o número de Poneglyphs encontrados será exibido.
 
 ## Sistema de Salvar e Carregar
 
 - **Salvamento Automático:** O jogo salva seu progresso automaticamente a cada movimento.
-- **Carregar Jogo:** Ao iniciar o programa, se um jogo salvo for encontrado, será perguntado se você deseja continuar de onde parou.
+- **Carregar Jogo:** Ao iniciar o programa, se um jogo salvo for encontrado, ele será carregado automaticamente para você continuar de onde parou.
 - **Exclusão do Save:** O arquivo de save é deletado automaticamente quando a partida termina (seja por vitória ou derrota), permitindo que uma nova jornada comece do zero.
-
-
-
-

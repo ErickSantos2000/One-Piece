@@ -5,10 +5,10 @@ public class Poneglyph extends ElementoTabuleiro {
         pirata.setPoneglyph(pirata.getPoneglyph()+1);
 
     }
-    public String simbolo() { return "📖"; }
+    public String simbolo() { return "🕋"; }
 
     public String simboloComJogador(){
-        return "🕋";
+        return "📖";
     }
 }
 
