@@ -1,18 +1,16 @@
 import java.io.Serializable;
 
-public class Jogador implements Serializable {
+public class Pirata implements Serializable {
     private int linha, coluna;
-    private int pontos;
     private int movimentos;
-    private int tesouro;
-    private int armadilha;
+    private int poneglyph;
+    private int marinha;
 
-    public Jogador() {
+    public Pirata() {
         this.linha = 0;
         this.coluna = 0;
-        this.pontos = 0;
         this.movimentos = 0;
-        this.tesouro = 0;
+        this.poneglyph = 0;
     }
 
 
@@ -26,36 +24,28 @@ public class Jogador implements Serializable {
         movimentos++;
     }
 
-    public void atualizarPontos(int valor) {
-        pontos += valor;
-    }
-
-
     // gets
-    public int getArmadilha() {
-        return armadilha;
+    public int getMarinha() {
+        return marinha;
     }
 
     public int getLinha() { return linha; }
 
     public int getColuna() { return coluna; }
 
-    public int getPontos() { return pontos; }
-
     public int getMovimentos() { return movimentos; }
 
-
-    public int getTesouro() {
-        return tesouro;
+    public int getPoneglyph() {
+        return poneglyph;
     }
 
     // sets
-    public void setTesouro(int tesouro) {
-        this.tesouro = tesouro;
+    public void setPoneglyph(int tesouro) {
+        this.poneglyph = tesouro;
     }
 
-    public void setArmadilha(int armadilha) {
-        this.armadilha = armadilha;
+    public void setMarinha(int armadilha) {
+        this.marinha = armadilha;
     }
 
     public void setColuna(int coluna) {
@@ -64,10 +54,6 @@ public class Jogador implements Serializable {
 
     public void setLinha(int linha) {
         this.linha = linha;
-    }
-
-    public void setPontos(int pontos) {
-        this.pontos = pontos;
     }
 
     public void setMovimentos(int movimentos) {
