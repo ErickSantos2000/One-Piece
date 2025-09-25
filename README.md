@@ -27,7 +27,7 @@ Use as seguintes teclas para se mover:
 - **⛵ (Seu Navio):** Representa sua posição atual no mapa.
 - **🌊 (Mar Aberto):** Uma área inexplorada do mapa ou uma área já visitada que não continha um Poneglyph. Interagir com o mar tem o mesmo efeito que encontrar a Marinha.
 - **📖 (Poneglyph):** O objetivo! Encontrar um destes te aproxima da vitória.
-- **⚓ (Marinha):** Cuidado! Encontrar a Marinha registra o encontro, assim como interagir com o Mar, mas não há penalidade direta que afete o resultado do jogo.
+- **⚓ (Marinha):** Cuidado! Ao encontrar a Marinha.
 - **💥 (Combate):** Símbolo que aparece quando você interage com a Marinha.
 - **🕋 (Leitura):** Símbolo que aparece quando você encontra e lê um Poneglyph.
 
