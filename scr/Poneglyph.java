@@ -1,9 +1,8 @@
 
 
 public class Poneglyph extends ElementoTabuleiro {
-    public void interagir(Jogador jogador) {
-        jogador.atualizarPontos(3);
-        jogador.setTesouro(jogador.getTesouro()+1);
+    public void interagir(Pirata pirata) {
+        pirata.setPoneglyph(pirata.getPoneglyph()+1);
 
     }
     public String simbolo() { return "📖"; }
