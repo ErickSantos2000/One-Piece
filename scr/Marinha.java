@@ -1,9 +1,8 @@
 
 
 public class Marinha extends ElementoTabuleiro {
-    public void interagir(Jogador jogador) {
-        jogador.atualizarPontos(-2);
-        jogador.setArmadilha(jogador.getArmadilha()+1);
+    public void interagir(Pirata pirata) {
+        pirata.setMarinha(pirata.getMarinha()+1);
         
     }
     public String simbolo() { return "⚓"; }
